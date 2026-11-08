@@ -29,6 +29,14 @@ dev_dependencies:
 
   flutter_lints: ^6.0.0
   sqflite_common_ffi: ^2.4.5
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/app_icon.png"
+  adaptive_icon_background: "#245C36"
+  adaptive_icon_foreground: "assets/icon/banana_foreground.png"
