@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import 'package:projeto_os/data/models/historico_item.dart';
-import 'package:projeto_os/data/services/database_service.dart';
-import 'package:projeto_os/data/services/secure_storage_service.dart';
+import '/data/models/historico_item.dart';
+import '/data/services/database_service.dart';
+import '/data/services/secure_storage_service.dart';
 
 class HistoricoRepository {
   static const String _baseUrl = 'https://oquetemnomeucosmetico.com.br/api';

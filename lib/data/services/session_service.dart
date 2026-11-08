@@ -1,4 +1,4 @@
-import 'package:projeto_os/data/services/secure_storage_service.dart';
+import '/data/services/secure_storage_service.dart';
 
 class SessionService {
   late final SecureStorageService _secureStorage;

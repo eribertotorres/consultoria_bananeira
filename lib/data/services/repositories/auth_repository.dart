@@ -3,10 +3,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:projeto_os/shared/result/result.dart';
-import 'package:projeto_os/data/models/user_model.dart';
-import 'package:projeto_os/shared/utils/crypto_helper.dart';
-import 'package:projeto_os/data/services/secure_storage_service.dart';
+
+import '/shared/result/result.dart';
+import '/data/models/user_model.dart';
+import '/shared/utils/crypto_helper.dart';
+import '/data/services/secure_storage_service.dart';
 
 abstract class IAuthRepository {
   Future<Result<UserModel>> login({

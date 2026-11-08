@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_os/data/models/chamado_model.dart';
-import 'package:projeto_os/view/chamados/registrar_atendimento_view.dart';
+import '/data/models/chamado_model.dart';
+import '/view/chamados/registrar_atendimento_view.dart';
 
-import 'package:projeto_os/view/widgets/clima_card.dart';
+import '/view/widgets/clima_card.dart';
 
 class ChamadoDetalheView extends StatelessWidget {
   final ChamadoModel chamado;

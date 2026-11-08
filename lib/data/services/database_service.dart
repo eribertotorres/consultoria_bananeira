@@ -1,7 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'package:projeto_os/data/models/chamado_model.dart';
+import '/data/models/chamado_model.dart';
 
 class DatabaseService {
   static final DatabaseService instance = DatabaseService._internal();

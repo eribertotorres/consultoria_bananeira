@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-import 'package:projeto_os/data/services/database_service.dart';
+import 'package:consultoria_bananeira/data/services/database_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

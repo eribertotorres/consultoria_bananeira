@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:projeto_os/data/models/chamado_model.dart';
-import 'package:projeto_os/data/services/database_service.dart';
-import 'package:projeto_os/data/services/foto_service.dart';
+import '/data/models/chamado_model.dart';
+import '/data/services/database_service.dart';
+import '/data/services/foto_service.dart';
 
 class RegistrarAtendimentoView extends StatefulWidget {
   final ChamadoModel chamado;

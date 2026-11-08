@@ -1,5 +1,5 @@
-name: projeto_os
-description: "Projeto OS é um projeto para Técnicos poderem consultar OS, resolver os chamados, e quando tiver acesso a internet, atualizar os status."
+name: consultoria_bananeira
+description: Aplicativo da plataforma Consultoria Bananeira
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 

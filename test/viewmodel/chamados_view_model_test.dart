@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:projeto_os/data/models/chamado_model.dart';
-import 'package:projeto_os/data/services/repositories/chamados_repository.dart';
-import 'package:projeto_os/viewmodel/chamados_view_model.dart';
+import 'package:consultoria_bananeira/data/models/chamado_model.dart';
+import 'package:consultoria_bananeira/data/services/repositories/chamados_repository.dart';
+import 'package:consultoria_bananeira/viewmodel/chamados_view_model.dart';
 
 // Repositório simulado: não acessa a internet.
 class FakeChamadosRepository implements IChamadosRepository {

@@ -5,9 +5,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:projeto_os/data/models/chamado_model.dart';
-import 'package:projeto_os/data/services/database_service.dart';
-import 'package:projeto_os/data/services/secure_storage_service.dart';
+import '/data/models/chamado_model.dart';
+import '/data/services/database_service.dart';
+import '/data/services/secure_storage_service.dart';
 
 abstract class IChamadosRepository {
   Future<List<ChamadoModel>> listarChamados();

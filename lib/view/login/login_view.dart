@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:projeto_os/viewmodel/login_view_model.dart';
-import 'package:projeto_os/shared/routes/app_routes.dart';
+
+import '/viewmodel/login_view_model.dart';
+import '/shared/routes/app_routes.dart';
 
 final class LoginView extends StatefulWidget {
   const LoginView({super.key});

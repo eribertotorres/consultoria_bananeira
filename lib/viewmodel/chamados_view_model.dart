@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 
 import 'dart:async';
 
-import 'package:projeto_os/data/models/chamado_model.dart';
-import 'package:projeto_os/data/services/localizacao_service.dart';
-import 'package:projeto_os/data/services/repositories/chamados_repository.dart';
-import 'package:projeto_os/data/services/database_service.dart';
+import '/data/models/chamado_model.dart';
+import '/data/services/localizacao_service.dart';
+import '/data/services/repositories/chamados_repository.dart';
+import '/data/services/database_service.dart';
 
 class ChamadosViewModel extends ChangeNotifier {
   final IChamadosRepository repository;

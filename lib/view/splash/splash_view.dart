@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:projeto_os/shared/routes/app_routes.dart';
-import 'package:projeto_os/data/services/session_service.dart';
-import 'package:projeto_os/data/services/secure_storage_service.dart';
+import '/shared/routes/app_routes.dart';
+import '/data/services/session_service.dart';
+import '/data/services/secure_storage_service.dart';
 
-import 'package:projeto_os/view/widgets/lili_animation.dart';
-import 'package:projeto_os/shared/constants/splash_messages.dart';
+import '/view/widgets/lili_animation.dart';
+import '/shared/constants/splash_messages.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

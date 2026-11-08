@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_os/data/services/database_service.dart';
-import 'package:projeto_os/data/services/sincronizacao_service.dart';
+import '/data/services/database_service.dart';
+import '/data/services/sincronizacao_service.dart';
 
 class SincronizacaoView extends StatefulWidget {
   const SincronizacaoView({super.key});

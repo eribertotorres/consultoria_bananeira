@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_os/data/services/clima_service.dart';
+
+import '/data/services/clima_service.dart';
 
 class ClimaCard extends StatefulWidget {
   final double latitude;

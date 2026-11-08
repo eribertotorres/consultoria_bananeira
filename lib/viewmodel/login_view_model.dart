@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:projeto_os/data/services/repositories/auth_repository.dart';
-import 'package:projeto_os/data/models/user_model.dart';
-import 'package:projeto_os/shared/result/result.dart';
+
+import '/data/services/repositories/auth_repository.dart';
+import '/data/models/user_model.dart';
+import '/shared/result/result.dart';
 
 final class LoginViewModel extends ChangeNotifier {
   final IAuthRepository repository;

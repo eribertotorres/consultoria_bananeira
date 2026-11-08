@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:projeto_os/viewmodel/chamados_view_model.dart';
-import 'package:projeto_os/view/chamados/chamado_detalhe_view.dart';
-import 'package:projeto_os/view/chamados/sincronizacao_view.dart';
-import 'package:projeto_os/view/chamados/historico_view.dart';
-import 'package:projeto_os/view/widgets/lili_tips.dart';
+import '/viewmodel/chamados_view_model.dart';
+import '/view/chamados/chamado_detalhe_view.dart';
+import '/view/chamados/sincronizacao_view.dart';
+import '/view/chamados/historico_view.dart';
+import '/view/widgets/lili_tips.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

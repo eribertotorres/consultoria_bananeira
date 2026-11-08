@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_os/data/models/historico_item.dart';
-import 'package:projeto_os/data/services/repositories/historico_repository.dart';
+import '/data/models/historico_item.dart';
+import '/data/services/repositories/historico_repository.dart';
 
 class HistoricoView extends StatefulWidget {
   const HistoricoView({super.key});

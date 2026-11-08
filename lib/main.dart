@@ -9,9 +9,9 @@ import 'view/splash/splash_view.dart';
 import 'view/home/home_view.dart';
 import 'shared/routes/app_routes.dart';
 
-import 'package:projeto_os/viewmodel/chamados_view_model.dart';
-import 'package:projeto_os/data/services/repositories/chamados_repository.dart';
-import 'package:projeto_os/data/services/secure_storage_service.dart';
+import 'viewmodel/chamados_view_model.dart';
+import 'data/services/repositories/chamados_repository.dart';
+import 'data/services/secure_storage_service.dart';
 
 void main() {
   runApp(const MyApp());
