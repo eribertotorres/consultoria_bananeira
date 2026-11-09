@@ -2,14 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class LiliAnimation extends StatefulWidget {
-  const LiliAnimation({super.key});
+class BananaAnimation extends StatefulWidget {
+  const BananaAnimation({super.key});
 
   @override
-  State<LiliAnimation> createState() => _LiliAnimationState();
+  State<BananaAnimation> createState() => _BananaAnimationState();
 }
 
-class _LiliAnimationState extends State<LiliAnimation>
+class _BananaAnimationState extends State<BananaAnimation>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -36,9 +36,9 @@ class _LiliAnimationState extends State<LiliAnimation>
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          const larguraLili = 48.0;
+          const larguraBanana = 48.0;
 
-          final percurso = math.max(0.0, constraints.maxWidth - larguraLili);
+          final percurso = math.max(0.0, constraints.maxWidth - larguraBanana);
 
           return AnimatedBuilder(
             animation: _controller,
@@ -53,7 +53,7 @@ class _LiliAnimationState extends State<LiliAnimation>
                     // Easter egg: Lili Jackson - Moonwalk Tour 2026.
                     // A orientação original do emoji fazia a Lili caminhar de costas.
                     // Invertemos o espelhamento para acompanhar a direção do movimento.
-                    // QA aprovado: nenhum moonwalk involuntário detectado. 🐈
+                    // QA aprovado: nenhum moonwalk involuntário detectado. 🍌
                     child: Transform(
                       alignment: Alignment.center,
                       transform: Matrix4.rotationY(voltando ? 0 : math.pi),
@@ -67,8 +67,8 @@ class _LiliAnimationState extends State<LiliAnimation>
               );
             },
             child: const SizedBox(
-              width: larguraLili,
-              child: Center(child: Text('🐈', style: TextStyle(fontSize: 34))),
+              width: larguraBanana,
+              child: Center(child: Text('🍌', style: TextStyle(fontSize: 34))),
             ),
           );
         },

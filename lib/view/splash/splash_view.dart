@@ -6,7 +6,7 @@ import '/shared/routes/app_routes.dart';
 import '/data/services/session_service.dart';
 import '/data/services/secure_storage_service.dart';
 
-import '/view/widgets/lili_animation.dart';
+import '/view/widgets/banana_animation.dart';
 import '/shared/constants/splash_messages.dart';
 
 class SplashView extends StatefulWidget {
@@ -29,12 +29,11 @@ class _SplashViewState extends State<SplashView>
   void initState() {
     super.initState();
 
-    // Escolhe uma mensagem uma única vez por inicialização.
+    // Seleciona uma mensagem aleatória ao iniciar.
     _mensagem = SplashMessages
         .mensagens[Random().nextInt(SplashMessages.mensagens.length)];
 
-    // Mantém a duração da Splash em três segundos.
-    // Este controlador não interfere na animação da Lili.
+    // Duração mínima da Splash: três segundos.
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
@@ -46,14 +45,11 @@ class _SplashViewState extends State<SplashView>
   Future<void> _iniciarAplicativo() async {
     String? token;
 
-    // Recupera a sessão enquanto a animação acontece.
     final tokenFuture = _sessionService.recuperarToken();
 
     try {
-      // Aguarda o tempo mínimo da Splash.
       await _controller.forward().orCancel;
 
-      // Aguarda a leitura do token, se necessário.
       token = await tokenFuture;
 
       debugPrint(
@@ -89,14 +85,21 @@ class _SplashViewState extends State<SplashView>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('🐙', style: TextStyle(fontSize: 110)),
+              // Logotipo provisório da Consultoria Bananeira.
+              Image.asset('assets/icon/app_icon.png', width: 110, height: 110),
 
-              const Text('Projeto OS', style: TextStyle(fontSize: 30)),
+              const SizedBox(height: 12),
+
+              const Text(
+                'Consultoria Bananeira',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30),
+              ),
 
               const SizedBox(height: 30),
 
-              // Lili caminha e muda de direção automaticamente.
-              const LiliAnimation(),
+              // Animação original, ainda será substituída.
+              const BananaAnimation(),
 
               const SizedBox(height: 12),
 

@@ -2,16 +2,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class LiliTips extends StatefulWidget {
-  const LiliTips({super.key});
+class BananaTips extends StatefulWidget {
+  const BananaTips({super.key});
 
   @override
-  State<LiliTips> createState() => _LiliTipsState();
+  State<BananaTips> createState() => _BananaTipsState();
 }
 
-class _LiliTipsState extends State<LiliTips> {
+class _BananaTipsState extends State<BananaTips> {
   static const List<String> _frases = [
-    'Antes de culpar a API, confira se o Wi-Fi está ligado. 🐈',
+    'Antes de culpar a API, confira se o Wi-Fi está ligado. 🍌',
     'Um commit por vez. Até gatos têm limites.',
     'Não existe bug, existe uma oportunidade de QA felino.',
     'Se compilou, comemore. Se funcionou, faça um commit!',
@@ -21,7 +21,7 @@ class _LiliTipsState extends State<LiliTips> {
     'Uma OS resolvida vale mais que dez TODOs esquecidos.',
     'Se está offline, salve primeiro. Sincronize depois.',
     'Radlumzices não passam pela revisão da Lili.',
-    'O Clayton tem oito braços. Você só precisa de um bom plano.',
+    'O Clayton tem oito braços. Você só precisa de um bom plantio.',
     'Toda grande Sprint merece uma pausa para um ronronar.',
   ];
 
@@ -49,14 +49,14 @@ class _LiliTipsState extends State<LiliTips> {
         padding: const EdgeInsets.all(14),
         child: Row(
           children: [
-            const Text('🐈', style: TextStyle(fontSize: 32)),
+            const Text('🍌', style: TextStyle(fontSize: 32)),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'LiliTips — Dica da supervisora',
+                    'BananaTips — Dica da bananeira',
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: 4),
@@ -66,7 +66,7 @@ class _LiliTipsState extends State<LiliTips> {
             ),
             IconButton(
               onPressed: _novaDica,
-              tooltip: 'Outra LiliTip',
+              tooltip: 'Outra BananaTip',
               icon: const Icon(Icons.refresh),
             ),
           ],

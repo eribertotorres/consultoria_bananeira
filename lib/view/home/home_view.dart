@@ -5,7 +5,7 @@ import '/viewmodel/chamados_view_model.dart';
 import '/view/chamados/chamado_detalhe_view.dart';
 import '/view/chamados/sincronizacao_view.dart';
 import '/view/chamados/historico_view.dart';
-import '/view/widgets/lili_tips.dart';
+import '../widgets/banana_tips.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -132,7 +132,7 @@ class HomeView extends StatelessWidget {
           // Supervisora Lili.
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
-            child: LiliTips(),
+            child: BananaTips(),
           ),
 
           // Listagem de ordens de serviço.
