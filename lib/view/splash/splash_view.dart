@@ -8,6 +8,8 @@ import '/data/services/secure_storage_service.dart';
 
 import '/view/widgets/banana_animation.dart';
 import '/shared/constants/splash_messages.dart';
+import '/data/services/motd_service.dart';
+import '/view/motd/motd_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -65,8 +67,28 @@ class _SplashViewState extends State<SplashView>
 
     if (!mounted) return;
 
-    Navigator.of(context).pushReplacementNamed(
-      token != null && token.isNotEmpty ? AppRoutes.home : AppRoutes.login,
+    // Determina o destino original do aplicativo.
+    final proximaRota = token != null && token.isNotEmpty
+        ? AppRoutes.home
+        : AppRoutes.login;
+
+    // Consulta o canal de avisos.
+    final motdService = MotdService();
+    final aviso = await motdService.buscarAvisoPendente();
+
+    if (!mounted) return;
+
+    // Se não existir aviso pendente, navega normalmente.
+    if (aviso == null) {
+      Navigator.of(context).pushReplacementNamed(proximaRota);
+      return;
+    }
+
+    // Se existir aviso, apresenta a camada intermediária.
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(
+        builder: (context) => MotdView(aviso: aviso, proximaRota: proximaRota),
+      ),
     );
   }
 
