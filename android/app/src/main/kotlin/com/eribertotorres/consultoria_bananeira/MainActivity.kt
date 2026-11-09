@@ -1,4 +1,4 @@
-package com.example.projeto_os
+package br.com.eribertotorres.consultoria_bananeira
 
 import io.flutter.embedding.android.FlutterActivity
 
