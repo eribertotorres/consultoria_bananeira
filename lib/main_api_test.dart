@@ -22,7 +22,7 @@ class _ApiTestViewState extends State<ApiTestView> {
   Future<String> _consultarApi() async {
     final response = await http
         .get(
-          Uri.parse('http://10.0.2.2/'),
+          Uri.parse('http://10.0.2.2/api/v1/health'),
           headers: {'Accept': 'application/json'},
         )
         .timeout(const Duration(seconds: 10));
