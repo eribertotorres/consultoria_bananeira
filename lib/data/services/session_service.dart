@@ -71,7 +71,28 @@ class SessionService {
 
   // Ainda é apenas limpeza local.
   // Conectaremos este método ao logout remoto na próxima etapa.
-  Future<void> encerrarSessao() {
-    return secureStorage.removerToken();
+  Future<void> encerrarSessao() async {
+    final token = await recuperarToken();
+
+    if (token == null || token.isEmpty) {
+      await secureStorage.removerToken();
+      return;
+    }
+
+    final response = await http
+        .post(
+          Uri.parse('${AuthRepository.baseUrl}/auth/logout'),
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        )
+        .timeout(const Duration(seconds: 15));
+
+    if (response.statusCode != 204 && response.statusCode != 401) {
+      throw Exception('Não foi possível encerrar a sessão.');
+    }
+
+    await secureStorage.removerToken();
   }
 }
