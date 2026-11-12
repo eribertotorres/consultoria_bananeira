@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/motd_message.dart';
+import '/data/services/repositories/auth_repository.dart';
 
 class MotdService {
   final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
@@ -23,21 +27,62 @@ class MotdService {
   );
 
   Future<MotdMessage?> buscarAvisoPendente() async {
-    if (!_avisoAtual.estaVigente) return null;
+    MotdMessage? aviso;
+
+    try {
+      aviso = await _buscarAvisoRemoto();
+    } catch (_) {
+      // Falha remota: utiliza o aviso local.
+      aviso = _avisoAtual;
+    }
+
+    // Resposta remota válida com data:null não usa o aviso local.
+    if (aviso == null || !aviso.estaVigente) {
+      return null;
+    }
 
     try {
       final visualizados =
           await _prefs.getStringList(_chaveVisualizados) ?? <String>[];
 
-      if (visualizados.contains(_avisoAtual.id)) {
+      if (visualizados.contains(aviso.id)) {
         return null;
       }
 
-      return _avisoAtual;
+      return aviso;
     } catch (_) {
-      // Falha na leitura não deve bloquear o aplicativo.
+      // Falha local não deve bloquear a navegação.
       return null;
     }
+  }
+
+  Future<MotdMessage?> _buscarAvisoRemoto() async {
+    final response = await http
+        .get(
+          Uri.parse('${AuthRepository.baseUrl}/motd'),
+          headers: {'Accept': 'application/json'},
+        )
+        .timeout(const Duration(seconds: 5));
+
+    if (response.statusCode != 200) {
+      throw Exception('Falha na consulta de comunicados.');
+    }
+
+    final decoded = jsonDecode(utf8.decode(response.bodyBytes));
+
+    if (decoded is! Map<String, dynamic> || !decoded.containsKey('data')) {
+      throw const FormatException('Resposta MOTD inválida.');
+    }
+
+    final data = decoded['data'];
+
+    if (data == null) return null;
+
+    if (data is! Map<String, dynamic>) {
+      throw const FormatException('Dados MOTD inválidos.');
+    }
+
+    return MotdMessage.fromMap(data);
   }
 
   Future<void> marcarComoVisualizado(String id) async {
