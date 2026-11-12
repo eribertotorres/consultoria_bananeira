@@ -6,12 +6,9 @@ import 'viewmodel/login_view_model.dart';
 import 'data/services/repositories/auth_repository.dart';
 
 import 'view/splash/splash_view.dart';
-import 'view/home/home_view.dart';
 import 'shared/routes/app_routes.dart';
 
-import 'viewmodel/chamados_view_model.dart';
-import 'data/services/repositories/chamados_repository.dart';
-import 'data/services/secure_storage_service.dart';
+import 'view/home/erp_mobile_home_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,14 +31,7 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginViewModel(repository: AuthRepository()),
           child: const LoginView(),
         ),
-        AppRoutes.home: (context) => ChangeNotifierProvider<ChamadosViewModel>(
-          create: (context) => ChamadosViewModel(
-            repository: ChamadosRepository(
-              secureStorage: SecureStorageService(),
-            ),
-          )..carregarChamados(),
-          child: const HomeView(),
-        ),
+        AppRoutes.home: (context) => const ErpMobileHomeView(),
       },
     );
   }

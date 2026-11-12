@@ -3,9 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '/shared/routes/app_routes.dart';
-import '/data/services/session_service.dart';
-import '/data/services/secure_storage_service.dart';
-
 import '/view/widgets/banana_animation.dart';
 import '/shared/constants/splash_messages.dart';
 import '/data/services/motd_service.dart';
@@ -22,10 +19,6 @@ class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final String _mensagem;
-
-  final SessionService _sessionService = SessionService(
-    secureStorage: SecureStorageService(),
-  );
 
   @override
   void initState() {
@@ -45,51 +38,37 @@ class _SplashViewState extends State<SplashView>
   }
 
   Future<void> _iniciarAplicativo() async {
-    String? token;
-
-    final tokenFuture = _sessionService.recuperarToken();
-
     try {
       await _controller.forward().orCancel;
-
-      token = await tokenFuture;
-
-      debugPrint(
-        'SESSAO: token armazenado = '
-        '${token != null && token.isNotEmpty}',
-      );
     } on TickerCanceled {
       return;
-    } catch (e) {
-      debugPrint('SESSAO: erro ao recuperar token: $e');
-      token = null;
     }
 
     if (!mounted) return;
 
-    // Determina o destino original do aplicativo.
-    final proximaRota = token != null && token.isNotEmpty
-        ? AppRoutes.home
-        : AppRoutes.login;
+    // Temporário: exige login até integrarmos a validação por /auth/me.
+    const proximaRota = AppRoutes.login;
 
-    // Consulta o canal de avisos.
-    final motdService = MotdService();
-    final aviso = await motdService.buscarAvisoPendente();
+    try {
+      final aviso = await MotdService().buscarAvisoPendente();
 
-    if (!mounted) return;
+      if (!mounted) return;
 
-    // Se não existir aviso pendente, navega normalmente.
-    if (aviso == null) {
-      Navigator.of(context).pushReplacementNamed(proximaRota);
-      return;
+      if (aviso != null) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute<void>(
+            builder: (context) =>
+                MotdView(aviso: aviso, proximaRota: proximaRota),
+          ),
+        );
+        return;
+      }
+    } catch (_) {
+      // Falha no MOTD não bloqueia a abertura do login.
+      if (!mounted) return;
     }
 
-    // Se existir aviso, apresenta a camada intermediária.
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute<void>(
-        builder: (context) => MotdView(aviso: aviso, proximaRota: proximaRota),
-      ),
-    );
+    Navigator.of(context).pushReplacementNamed(proximaRota);
   }
 
   @override

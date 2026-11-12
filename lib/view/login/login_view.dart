@@ -75,13 +75,16 @@ final class _LoginViewState extends State<LoginView> {
                   const SizedBox(height: 32),
                   TextFormField(
                     controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    autocorrect: false,
+                    autofillHints: const [AutofillHints.username],
                     decoration: const InputDecoration(
-                      labelText: 'Usuário',
+                      labelText: 'Email',
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Informe o usuário.';
+                        return 'Informe o email.';
                       }
 
                       return null;
