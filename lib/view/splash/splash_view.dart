@@ -7,6 +7,8 @@ import '/view/widgets/banana_animation.dart';
 import '/shared/constants/splash_messages.dart';
 import '/data/services/motd_service.dart';
 import '/view/motd/motd_view.dart';
+import '/data/services/session_service.dart';
+import '/data/services/secure_storage_service.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -19,6 +21,10 @@ class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final String _mensagem;
+
+  final SessionService _sessionService = SessionService(
+    secureStorage: SecureStorageService(),
+  );
 
   @override
   void initState() {
@@ -46,8 +52,43 @@ class _SplashViewState extends State<SplashView>
 
     if (!mounted) return;
 
-    // Temporário: exige login até integrarmos a validação por /auth/me.
-    const proximaRota = AppRoutes.login;
+    bool sessaoValida;
+
+    while (true) {
+      try {
+        sessaoValida = await _sessionService.validarSessao();
+        break;
+      } catch (_) {
+        if (!mounted) return;
+
+        await showDialog<void>(
+          context: context,
+          barrierDismissible: false,
+          builder: (dialogContext) => PopScope(
+            canPop: false,
+            child: AlertDialog(
+              title: const Text('Não foi possível validar a sessão'),
+              content: const Text(
+                'Verifique a conexão e a disponibilidade do servidor. '
+                'Sua sessão foi preservada.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(),
+                  child: const Text('Tentar novamente'),
+                ),
+              ],
+            ),
+          ),
+        );
+
+        if (!mounted) return;
+      }
+    }
+
+    if (!mounted) return;
+
+    final proximaRota = sessaoValida ? AppRoutes.home : AppRoutes.login;
 
     try {
       final aviso = await MotdService().buscarAvisoPendente();
@@ -64,7 +105,6 @@ class _SplashViewState extends State<SplashView>
         return;
       }
     } catch (_) {
-      // Falha no MOTD não bloqueia a abertura do login.
       if (!mounted) return;
     }
 
